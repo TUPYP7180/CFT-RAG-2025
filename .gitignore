@@ -1,0 +1,7 @@
+.env
+.venv/
+.vscode/
+__pycache__/
+*.local.*
+*.db
+entity_forest_cache/*.pkl
