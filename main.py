@@ -13,7 +13,7 @@ parser.add_argument('--vec-db-key', type=str, default="院志", help="The key fo
 parser.add_argument('--tree-num-max', type=int, default=50, help="The maximum number of trees to build.")
 parser.add_argument('--entities-file-name', type=str, default="entities_file", help="The name of the entities file.")
 parser.add_argument('--search-method', type=int, default=1, choices=[0, 1, 2, 4, 5, 6, 7], 
-                    help="The search method to use: 0 for no tree, 1 for BFS, 2 for BloomFilter Search, 4 for simple hash, 5 for improved BloomFilter Search, 6 for improved BloomFilter-Cpp Search, 7 for Cuckoo filter.")
+                    help="The search method to use: 0 for no tree, 1 for BFS, 2 for BloomFilter Search, 5 for improved BloomFilter Search, 6 for improved BloomFilter-Cpp Search, 7 for Cuckoo filter.")
 parser.add_argument('--node-num-max', type=int, default=2000000, help="The maximum number of nodes to build.")
 
 args = parser.parse_args()
@@ -59,24 +59,3 @@ print()
 end_time = time.time()
 execution_time = end_time - start_time
 print(f"\033[1;31mExecution Time: {execution_time:.6f} seconds\033[0m")
-
-if search_method == 7:
-    hash.cuckoo_sort()
-    print("try to retrieve after sorting")
-    stream = rag_complete(
-        "瑞安市人民医院中有些什么？",
-        vec_db,
-        forest,
-        nlp,
-        search_method=search_method,
-        debug=True,
-    )
-
-    start = True
-    for chunk in stream:
-        if start:
-            print("==== Result ====")
-            start = False
-        print(chunk, end="")
-    print()
-    

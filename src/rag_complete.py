@@ -88,7 +88,7 @@ def augment_prompt(query: str, db: RagVecDB | RagMultiVecDB, forest: list[Entity
     )
     if debug:
         execution_time = end_time - start_time    
-        # print(f"\n\033[1;31mEntityTree search time: {execution_time:.6f} seconds\033[0m\n")
+        print(f"\n\033[1;31mEntityTree search time: {execution_time:.6f} seconds\033[0m\n")
         # print(f"\n\nsource_knowledge: {source_knowledge}")
         # print(f"augmented_prompt: {augmented_prompt}")
     return augmented_prompt
