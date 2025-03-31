@@ -7,6 +7,7 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 
 |            | Only VecDB | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
 | ---------- | ---------- | ----------- | -------- | --------- | --------- | --------- | -------- |
+| Average Retrieval Time | -          | 18.37s         | 10.09s      | 9.70s       | 7.52s       | 8.11s       | **5.04s**      |
 | Time Ratio | -          | 56%         | 31%      | 29%       | 23%       | 24%       | **15%**      |
 | Accuracy   | 53%        | 68%         | 68%      | 68%       | 68%       | 62%       | **68%**     |
 
@@ -89,7 +90,7 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 #### Tree-RAG
 
 
-> * Relation: electron transfer - hydrogen carriers, hydrogen carriers - process*, process* - flavoprotein, process* - coenzyme I, process* - iron-sulfur protein, process* - ubiquinone, process* - cytochrome
+> * Relation: electron transfer - hydrogen carriers, hydrogen carriers - process*, process* - 1.flavoprotein, process* - 2.coenzyme I, process* - 3.iron-sulfur protein, process* - 4.ubiquinone, process* - 5.cytochrome
 > 
 > * Question: There are five types of hydrogen carriers involved in electron transfer, which proceed in a specific order. Can you describe the detailed process?
 > 
@@ -134,8 +135,9 @@ python test_tree.py
 
 `TRAG-cuckoofilter` is based on https://github.com/efficient/cuckoofilter.
 
-Use of data sets: 
+Use of datasets: 
 
-* Medical Exams: https://github.com/jind11/MedQA
-* AESLC: https://huggingface.co/datasets/Yale-LILY/aeslc
-* DART: https://github.com/Yale-LILY/dart
+| Dataset | MedQA                           | AESLC                                           | DART                              | Rui'an People's Hospital |
+| ------- | ------------------------------- | ----------------------------------------------- | --------------------------------- | ------------------------ |
+| Scale   | Large                           | Medium                                          | Medium                            | Small                    |
+| Source  | https://github.com/jind11/MedQA | https://huggingface.co/datasets/Yale-LILY/aeslc | https://github.com/Yale-LILY/dart | https://www.rahos.gov.cn |
