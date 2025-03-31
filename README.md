@@ -7,8 +7,8 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 
 |            | Only VecDB | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
 | ---------- | ---------- | ----------- | -------- | --------- | --------- | --------- | -------- |
-| Time Ratio | -          | 56%         | 31%      | 29%       | 23%       | 24%       | 15%      |
-| Accuracy   | 53%        | 68%         | 68%      | 68%       | 68%       | 62%       | 68%      |
+| Time Ratio | -          | 56%         | 31%      | 29%       | 23%       | 24%       | **15%**      |
+| Accuracy   | 53%        | 68%         | 68%      | 68%       | 68%       | 62%       | **68%**     |
 
 * Time Ratio: Ratio of entity retrieval time to large language model inference time that averages multiple datasets, multiple numbers of entities including long questions containing a large number of entities.
 * Accuracy: The accuracy obtained by using langsmith to rate the content of the large language model responses. T-RAGs using different methods retrieve the same content, with only minor differences in the accuracy of model responses.
