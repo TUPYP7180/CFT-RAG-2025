@@ -5,24 +5,49 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 
 ## 1. Result
 
-|            | Only VecDB | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
+* Average Retrieval Time: Average total time to extract entities, which is calculated by selecting or generating 36 questions on each dataset.
+* Time Ratio: Ratio of entity retrieval time to large language model response time(response time = retrieval time + inference time).
+* Accuracy: The accuracy obtained by using langsmith to rate the content of the large language model responses. T-RAGs using different methods retrieve the same content, with only minor differences in the accuracy of model responses.
+
+
+
+### MedQA
+
+|            | Text-Based RAG | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
 | ---------- | ---------- | ----------- | -------- | --------- | --------- | --------- | -------- |
 | Average Retrieval Time | -          | 18.37s         | 10.09s      | 9.70s       | 7.52s       | 8.11s       | **5.04s**      |
 | Time Ratio | -          | 56%         | 31%      | 29%       | 23%       | 24%       | **15%**      |
 | Accuracy   | 53%        | 68%         | 68%      | 68%       | 68%       | 62%       | **68%**     |
 
-* Time Ratio: Ratio of entity retrieval time to large language model inference time that averages multiple datasets, multiple numbers of entities including long questions containing a large number of entities.
-* Accuracy: The accuracy obtained by using langsmith to rate the content of the large language model responses. T-RAGs using different methods retrieve the same content, with only minor differences in the accuracy of model responses.
+### AESLC
+
+|            | Text-Based RAG | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
+| ---------- | ---------- | ----------- | -------- | --------- | --------- | --------- | -------- |
+| Average Retrieval Time | -          | 12.11s         | 5.04s      | 5.87s       | 2.22s       | 2.14s       | **0.95s**      |
+| Time Ratio | -          | 61%         | 25%      | 28%       | 11%       | 10%       | **5%**      |
+| Accuracy   | 40%        | 56%         | 56%      | 56%       | 56%       | 54%       | **56%**     |
+
+### DART
+
+|            | Text-Based RAG | Naive T-RAG | BF T-RAG | BF2 T-RAG | ANN T-RAG | ANN G-RAG | CF T-RAG |
+| ---------- | ---------- | ----------- | -------- | --------- | --------- | --------- | -------- |
+| Average Retrieval Time | -          | 15.88s         | 9.65s      | 8.13s       | 3.25s       | 3.91s       | **1.78s**      |
+| Time Ratio | -          | 72%         | 44%      | 37%       | 15%       | 18%       | **8%**      |
+| Accuracy   | 55%        | 67%         | 67%      | 67%       | 67%       | 65%       | **67%**     |
 
 ## 2. Use Case
+
+Rare Entity: Entity with no more than 0.1% presence.
 
 ### A. 1-Hop + Easy Question
 
 > Question: What causes Horner's syndrome?
 > 
 > Key Answer: Paralysis of ocular sympathetic nerves.
+>
+> Rare Entity: ocular_sympathetic_nerves.
 
-#### Only VecDB
+#### Text-Based RAG
 
 > * Question: What causes Horner's syndrome?
 > 
@@ -47,8 +72,10 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 > Question: What is the most essential component for culturing Mycoplasma?
 > 
 > Key Answer: Cholesterol supplements.
+>
+> Rare Entity: cholesterol_supplements.
 
-#### Only VecDB
+#### Text-Based RAG
 
 > * Question: What is the most essential component for culturing Mycoplasma?
 > 
@@ -73,8 +100,10 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 > Question: here are five types of hydrogen carriers involved in electron transfer, which proceed in a specific order. Can you describe the detailed process?
 > 
 > Answer: flavoprotein, coenzyme I, iron-sulfur protein, ubiquinone, cytochrome. 
+>
+> Rare Entity: flavoprotein, coenzyme, iron-sulfur_protein, ubiquinone, cytochrome. 
 
-#### Only VecDB
+#### Text-Based RAG
 
 > * Question: There are five types of hydrogen carriers involved in electron transfer, which proceed in a specific order. Can you describe the detailed process?
 > 
