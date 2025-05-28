@@ -3,7 +3,7 @@ CFT-RAG: An Entity Tree Based Retrieval Augmented Generation Algorithm With Cuck
 
 ![](./image/fig1.png)
 
-## 1. Result
+<!-- ## 1. Result
 
 * Average Retrieval Time: Average total time to extract entities, which is calculated by selecting or generating 36 questions on each dataset.
 * Time Ratio: Ratio of entity retrieval time to large language model response time(response time = retrieval time + inference time).
@@ -159,9 +159,19 @@ Rare Entity: Entity with no more than 0.1% presence.
 > 
 > * Question: There are five types of hydrogen carriers involved in electron transfer, which proceed in a specific order. Can you describe the detailed process?
 > 
-> * Answer: The process can be summarized as follows: flavoprotein → coenzyme I → iron-sulfur protein → ubiquinone → cytochrome. Flavoproteins, such as NADH dehydrogenase (Complex I) and succinate dehydrogenase (Complex II), contain flavin mononucleotide (FMN) or flavin adenine dinucleotide (FAD) as prosthetic groups. These enzymes play a crucial role in electron transfer from NADH or succinate to downstream components of the ETC...
+> * Answer: The process can be summarized as follows: flavoprotein → coenzyme I → iron-sulfur protein → ubiquinone → cytochrome. Flavoproteins, such as NADH dehydrogenase (Complex I) and succinate dehydrogenase (Complex II), contain flavin mononucleotide (FMN) or flavin adenine dinucleotide (FAD) as prosthetic groups. These enzymes play a crucial role in electron transfer from NADH or succinate to downstream components of the ETC... -->
 
-## 3. Code Usage
+## 1. Code Usage
+
+### Configuration
+
+```bash
+pip install uv
+uv sync
+pip install lab-1806-vec-db==0.2.3 python-dotenv sentence-transformers openai pybloom_live
+export HF_ENDPOINT=https://hf-mirror.com
+python -m spacy download zh_core_web_sm
+```
 
 ### Complete Process of CFT-RAG
 
@@ -196,7 +206,7 @@ Individually testing the performance of the improved Cuckoofilter and the sortin
 python test_tree.py
 ```
 
-## 4. Reference
+## 2. Reference
 
 `TRAG-cuckoofilter` is based on https://github.com/efficient/cuckoofilter.
 
